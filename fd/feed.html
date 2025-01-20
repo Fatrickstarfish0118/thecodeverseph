@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Font Awesome for the delete icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="feed-container">
+        <h1>Feedback Form</h1>
+        <form id="feedback-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="section">Section:</label>
+            <input type="text" id="section" placeholder="Enter your section" required>
+
+            <label for="message">Feedback Message:</label>
+            <textarea id="message" placeholder="Write your feedback..." required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+        <h2>Feedback Messages</h2>
+        <div id="feedback-messages"></div>
+    </div>
+
+    <script src="feed.js"></script>
+</body>
+</html>

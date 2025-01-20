@@ -1,0 +1,70 @@
+body {
+    background-color: #ffffff; /* White to represent the flag's white stripes */
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+   
+}
+
+.editor-container {
+    max-width: 1000px;
+    width: 100%;
+    background-color: #ffffff; /* White background inside the container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px #bf0a30;
+}
+
+h1 {
+    text-align: center;
+    color: #bf0a30; /* Red for headings, representing the flag's stripes */
+    margin-bottom: 20px;
+}
+
+.editor-output {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+textarea {
+    width: 48%;
+    height: 400px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    border: 1px solid #bf0a30; /* Red border */
+    border-radius: 4px;
+    resize: none;
+    background-color: #f8f9fa; /* Light background for the text area */
+    color: #333; /* Dark text for readability */
+}
+
+iframe {
+    width: 48%;
+    height: 400px;
+    border: 1px solid #002868; /* Blue border */
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #bf0a30; /* Red button background */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #a50b26; /* Slightly darker red on hover */
+}

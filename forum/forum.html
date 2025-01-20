@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Coffee-Themed Forum</title>
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f0e1; /* Coffee cream background */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .forum-container {
+      background-color: #eae0d5; /* Light coffee background for container */
+      width: 90%;
+      max-width: 900px;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative; /* Position relative for button alignment */
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Back Button Styles */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #8b5e3c; /* Coffee brown button */
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #734d32; /* Darker coffee brown */
+    }
+
+    /* Forum Heading */
+    h1 {
+      color: #5c4033; /* Dark coffee color */
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* New Thread Form */
+    .new-thread h2 {
+      color: #5c4033;
+      font-size: 1.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #c5a880;
+      border-radius: 5px;
+      background-color: #fdfaf6;
+      font-family: inherit;
+    }
+
+    button {
+      background-color: #8b5e3c; /* Rich coffee brown button */
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #734d32; /* Darker coffee brown */
+    }
+
+    /* Thread and Replies Section */
+    .thread {
+      background-color: #fdfaf6; /* Slight cream for the threads */
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .thread h3 {
+      color: #5c4033;
+      margin-bottom: 10px;
+    }
+
+    .thread p {
+      color: #3d2b20; /* Dark text for post content */
+      margin-bottom: 10px;
+    }
+
+    .replies-container {
+      margin-top: 10px;
+      padding-left: 20px;
+      border-left: 3px solid #c5a880; /* Light coffee border */
+    }
+
+    /* Reply Styling */
+    .reply {
+      background-color: #f5f0e1; /* Lighter cream for replies */
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .reply p {
+      margin: 0;
+      color: #3d2b20;
+    }
+
+    /* Reply Form */
+    .reply-form textarea {
+      margin-top: 10px;
+    }
+
+    .reply-form button {
+      background-color: #8b5e3c; /* Matching button style */
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="forum-container">
+    <!-- Back Button -->
+    <a href="home.html" class="back-button">Back</a>
+
+    <h1>Welcome to the Forum, <span id="userNameDisplay"></span>!</h1>
+
+    <!-- Form to create a new thread -->
+    <div class="new-thread">
+      <h2>Create a New Thread</h2>
+      <form id="threadForm">
+        <input type="text" id="title" placeholder="Thread Title" required>
+        <textarea id="content" placeholder="Your post" required></textarea>
+        <button type="submit">Post Thread</button>
+      </form>
+    </div>
+
+    <!-- Section to display threads and replies -->
+    <div id="threadsContainer"></div>
+  </div>
+
+  <script>
+    // Fetch the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Display the username in the forum header
+    document.getElementById('userNameDisplay').textContent = username;
+
+    // Fetch threads from localStorage or initialize an empty array
+    let threads = JSON.parse(localStorage.getItem('threads')) || [];
+
+    // Function to display threads on the page
+    function displayThreads() {
+      const threadsContainer = document.getElementById('threadsContainer');
+      threadsContainer.innerHTML = '';
+
+      threads.forEach((thread, index) => {
+        let threadDiv = document.createElement('div');
+        threadDiv.classList.add('thread');
+        
+        // Display the thread title, content, and the name of the user who posted it
+        threadDiv.innerHTML = `
+          <h3>${thread.title} (Posted by ${thread.author})</h3>
+          <p>${thread.content}</p>
+          <button onclick="toggleReplyForm(${index})">Reply</button>
+          
+          <!-- Container for replies -->
+          <div class="replies-container" id="replies-${index}">
+            <!-- Replies will be injected here -->
+          </div>
+
+          <!-- Form to post a reply -->
+          <form id="replyForm-${index}" class="reply-form" style="display: none;">
+            <textarea id="replyContent-${index}" placeholder="Your reply"></textarea>
+            <button type="button" onclick="postReply(${index})">Post Reply</button>
+          </form>
+        `;
+
+        // Append the thread to the container
+        threadsContainer.appendChild(threadDiv);
+        displayReplies(index);
+      });
+    }
+
+    // Function to post a new thread
+    document.getElementById('threadForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      // Push the thread with the username (author)
+      threads.push({ title, content, author: username, replies: [] });
+
+      // Store updated threads in localStorage
+      localStorage.setItem('threads', JSON.stringify(threads));
+
+      // Clear the input fields
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+
+      displayThreads();
+    });
+
+    // Function to display replies for a specific thread
+    function displayReplies(threadIndex) {
+      const repliesContainer = document.getElementById(`replies-${threadIndex}`);
+      repliesContainer.innerHTML = ''; // Clear any previous replies
+
+      // Loop through the replies array and append each reply
+      threads[threadIndex].replies.forEach(reply => {
+        const replyDiv = document.createElement('div');
+        replyDiv.classList.add('reply');
+        replyDiv.innerHTML = `<p>${reply.author}: ${reply.content}</p>`;
+        repliesContainer.appendChild(replyDiv);
+      });
+    }
+
+    // Function to toggle the reply form visibility
+    function toggleReplyForm(index) {
+      const replyForm = document.getElementById(`replyForm-${index}`);
+      replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Function to post a reply to a specific thread
+    function postReply(index) {
+      const replyContent = document.getElementById(`replyContent-${index}`).value;
+      if (replyContent.trim() !== '') {
+        // Add reply with the current username
+        threads[index].replies.push({ author: username, content: replyContent });
+
+        // Store updated threads in localStorage
+        localStorage.setItem('threads', JSON.stringify(threads));
+
+        document.getElementById(`replyContent-${index}`).value = ''; // Clear the reply input
+        displayReplies(index); // Update the replies display
+      }
+    }
+
+    // Load and display threads on page load
+    displayThreads();
+  </script>
+</body>
+</html>

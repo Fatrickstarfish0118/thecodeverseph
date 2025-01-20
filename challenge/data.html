@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Challenge: Data Structures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #002b5c; /* Utah Jazz Navy */
+        }
+
+        h2 {
+            color: #f9a01b; /* Utah Jazz Yellow */
+        }
+
+        .question-container {
+            margin-top: 20px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .answer-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .submit-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #002b5c; /* Utah Jazz Navy */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #001d3d; /* Darker Navy */
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .correct-message {
+            color: green;
+            margin-top: 10px;
+        }
+
+        #question-display {
+            display: none;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            resize: none;
+        }
+
+        #score {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #002b5c; /* Utah Jazz Navy */
+        }
+
+        #badge {
+            display: none;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #f9a01b; /* Utah Jazz Yellow */
+        }
+
+        #try-again-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #home-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Congrats Badge Styling */
+        .congrats-badge {
+            display: inline-block;
+            padding: 20px;
+            border: 5px solid #002b5c; /* Utah Jazz Navy */
+            border-radius: 50%;
+            background-color: #f9f9f9;
+            color: #002b5c; /* Utah Jazz Navy */
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .congrats-text {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coding Challenge: Data Structures</h1>
+        <button id="start-button" class="submit-button" onclick="startChallenge()">Start</button>
+        <div id="score">Score: 0</div>
+        <div id="question-display" class="question-container">
+            <h2 id="question-title"></h2>
+            <p id="question-text"></p>
+            <div class="answer-container">
+                <textarea id="user-answer" placeholder="Type your answer here..."></textarea>
+                <br>
+                <button class="submit-button" onclick="submitAnswer()">Submit Answer</button>
+                <div id="feedback" class="error-message"></div>
+                <div id="correct-feedback" class="correct-message"></div>
+            </div>
+        </div>
+        <div id="badge" class="congrats-badge">
+            🎉 Congratulations! 🎉
+            <div class="congrats-text">You have completed the challenge!</div>
+        </div>
+        <button id="try-again-button" class="submit-button" onclick="tryAgain()">Try Again</button>
+        <button id="home-button" class="submit-button" onclick="goToHome()">Go to Home</button>
+    </div>
+    
+    <script>
+        const questions = [
+            {
+                title: "Question 1: Arrays",
+                text: "Declare an array named 'numbers' with values 1, 2, and 3.",
+                correctAnswer: "let numbers = [1, 2, 3];"
+            },
+            {
+                title: "Question 2: Linked List",
+                text: "How do you represent a node in a singly linked list?",
+                correctAnswer: "class Node { constructor(value) { this.value = value; this.next = null; } }"
+            },
+            {
+                title: "Question 3: Stack",
+                text: "Write a push method for a stack using an array.",
+                correctAnswer: "stack.push(value);"
+            },
+            {
+                title: "Question 4: Queue",
+                text: "How do you add an element to the end of a queue using an array?",
+                correctAnswer: "queue.push(value);"
+            },
+            {
+                title: "Question 5: Hash Map",
+                text: "Declare a new Map object and set the key 'name' to 'John'.",
+                correctAnswer: "let map = new Map(); map.set('name', 'John');"
+            },
+            {
+                title: "Question 6: Binary Tree",
+                text: "Create a new TreeNode class for a binary tree with 'value', 'left', and 'right' properties.",
+                correctAnswer: "class TreeNode { constructor(value) { this.value = value; this.left = null; this.right = null; } }"
+            },
+            {
+                title: "Question 7: Graph",
+                text: "How do you represent an adjacency list for a graph using an object?",
+                correctAnswer: "let graph = { 'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A'], 'D': ['B'] };"
+            },
+            {
+                title: "Question 8: Set",
+                text: "Create a set and add the values 1, 2, and 3.",
+                correctAnswer: "let set = new Set([1, 2, 3]);"
+            },
+            {
+                title: "Question 9: Stack Pop",
+                text: "How do you remove an item from the top of a stack?",
+                correctAnswer: "stack.pop();"
+            },
+            {
+                title: "Question 10: Queue Dequeue",
+                text: "How do you remove an item from the front of a queue?",
+                correctAnswer: "queue.shift();"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startChallenge() {
+            document.getElementById("start-button").style.display = "none";
+            document.getElementById("score").innerText = "Score: " + score;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById("question-title").innerText = question.title;
+            document.getElementById("question-text").innerText = question.text;
+            document.getElementById("user-answer").value = '';
+            document.getElementById("feedback").innerText = '';
+            document.getElementById("correct-feedback").innerText = '';
+            document.getElementById("question-display").style.display = "block";
+        }
+
+        function submitAnswer() {
+            const userAnswer = document.getElementById("user-answer").value.trim();
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                score++;
+                document.getElementById("correct-feedback").innerText = "Correct answer! Moving to the next question.";
+                document.getElementById("score").innerText = "Score: " + score;
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    setTimeout(showQuestion, 2000);
+                } else {
+                    if (score === 10) {
+                        document.getElementById("badge").style.display = "inline-block";
+                    } else {
+                        document.getElementById("try-again-button").style.display = "block";
+                    }
+                    document.getElementById("home-button").style.display = "block";
+                }
+            } else {
+                document.getElementById("feedback").innerText = "Incorrect answer. Try again.";
+            }
+        }
+
+        function tryAgain() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById("try-again-button").style.display = "none";
+            document.getElementById("badge").style.display = "none";
+            document.getElementById("home-button").style.display = "none";
+            document.getElementById("score").innerText = "Score: " + score;
+            showQuestion();
+        }
+
+        function goToHome() {
+            window.location.href = "challenge.html"; // Replace "index.html" with your home page URL.
+        }
+    </script>
+</body>
+</html>

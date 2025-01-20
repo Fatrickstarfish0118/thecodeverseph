@@ -1,0 +1,40 @@
+.tile {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+    height: 150px; /* Fixed height for stability */
+    overflow: hidden; /* Prevent overflow */
+    display: flex; /* Flexbox for alignment */
+    flex-direction: column; /* Vertical alignment */
+    justify-content: center; /* Center content */
+}
+
+.tile:hover {
+    transform: scale(1.05);
+}
+
+.tile h4 {
+    margin-top: 10px;
+}
+
+.tile p {
+    margin: 0; /* Remove default margin for better alignment */
+    overflow-wrap: break-word; /* Break long words */
+}
+.modal-header {
+    border-bottom: none; /* Remove border for a cleaner look */
+}
+
+.close {
+    color: #333; /* Set a contrasting color */
+    font-size: 1.5rem; /* Increase font size for better visibility */
+}
+
+.close:hover {
+    color: #000; /* Darker color on hover */
+    text-decoration: none; /* Remove underline on hover */
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            font-weight: bold;
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        .review {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Variables Challenge</h1>
+        <div class="question">
+            <p id="question-text"></p>
+            <form id="challenge-form">
+                <input type="text" id="answer" placeholder="Your answer here" required>
+                <br><br>
+                <button type="button" class="submit-btn" onclick="submitAnswer()">Submit</button>
+            </form>
+            <p id="feedback" class="result"></p>
+        </div>
+        <div id="review-section" class="hidden">
+            <h2>Review Key Points</h2>
+            <ul id="review-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Array of 10 questions and their correct answers
+        const questions = [
+            { question: "What is the correct way to declare a variable in JavaScript?", answer: "let", keyPoint: "Use 'let' or 'const' to declare variables." },
+            { question: "How do you declare a constant variable?", answer: "const", keyPoint: "'const' is used for constants." },
+            { question: "What symbol is used for assignment in JavaScript?", answer: "=", keyPoint: "The '=' symbol is used for assignment." },
+            { question: "How do you declare a string variable?", answer: "let name = 'John';", keyPoint: "String values are enclosed in quotes." },
+            { question: "How do you declare a number variable?", answer: "let age = 30;", keyPoint: "Numbers don't need quotes." },
+            { question: "How do you declare a variable with no initial value?", answer: "let x;", keyPoint: "Variables can be declared without initialization." },
+            { question: "How do you declare multiple variables at once?", answer: "let x = 10, y = 20;", keyPoint: "Multiple variables can be declared in one line separated by commas." },
+            { question: "What is the keyword for block-scoped variables?", answer: "let", keyPoint: "'let' provides block-scoped variables." },
+            { question: "What keyword is used for function-scoped variables?", answer: "var", keyPoint: "'var' is function-scoped, but should be avoided for modern JavaScript." },
+            { question: "How do you reassign a variable?", answer: "x = 5;", keyPoint: "Variables can be reassigned using the '=' symbol." }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        const wrongAnswers = [];
+
+        // Function to load the current question
+        function loadQuestion() {
+            if (currentQuestion < questions.length) {
+                document.getElementById('question-text').textContent = questions[currentQuestion].question;
+                document.getElementById('answer').value = '';
+                document.getElementById('feedback').textContent = '';
+            } else {
+                endChallenge();
+            }
+        }
+
+        // Function to check the user's answer and move to the next question
+        function submitAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            // Check if the answer is correct
+            if (userAnswer === questions[currentQuestion].answer.toLowerCase()) {
+                score += 1;
+                feedback.textContent = "Correct!";
+                feedback.classList.add("success");
+                feedback.classList.remove("result");
+            } else {
+                feedback.textContent = "Incorrect.";
+                feedback.classList.add("result");
+                feedback.classList.remove("success");
+
+                // Store the incorrect answer for review
+                wrongAnswers.push({
+                    question: questions[currentQuestion].question,
+                    keyPoint: questions[currentQuestion].keyPoint
+                });
+            }
+
+            // Move to the next question after 2 seconds
+            currentQuestion++;
+            setTimeout(loadQuestion, 2000);
+        }
+
+        // Function to display review key points after challenge
+        function endChallenge() {
+            document.querySelector('.question').classList.add('hidden');
+            const reviewSection = document.getElementById('review-section');
+            const reviewList = document.getElementById('review-list');
+
+            // If there are wrong answers, show review key points
+            if (wrongAnswers.length > 0) {
+                wrongAnswers.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.question} - Key Point: ${item.keyPoint}`;
+                    reviewList.appendChild(li);
+                });
+                reviewSection.classList.remove('hidden');
+            }
+
+            // Store the final score
+            localStorage.setItem('var-score', score);
+
+            // Optionally, redirect back to the main page after a delay
+            setTimeout(() => {
+                window.location.href = 'challenge.html';
+            }, 5000); // 5-second delay
+        }
+
+        // Load the first question when the page loads
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>

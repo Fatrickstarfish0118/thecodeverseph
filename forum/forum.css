@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum with Replies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="forum-container">
+    <h1>Welcome to the Forum, <span id="userNameDisplay"></span>!</h1>
+
+    <!-- Form to create a new thread -->
+    <div class="new-thread">
+      <h2>Create a New Thread</h2>
+      <form id="threadForm">
+        <input type="text" id="title" placeholder="Thread Title" required>
+        <textarea id="content" placeholder="Your post" required></textarea>
+        <button type="submit">Post Thread</button>
+      </form>
+    </div>
+
+    <!-- Section to display threads and replies -->
+    <div id="threadsContainer"></div>
+  </div>
+
+  <script>
+    // Fetch the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Display the username in the forum header
+    document.getElementById('userNameDisplay').textContent = username;
+
+    // Sample data structure to store threads
+    let threads = [];
+
+    // Function to display threads on the page
+    function displayThreads() {
+      const threadsContainer = document.getElementById('threadsContainer');
+      threadsContainer.innerHTML = '';
+
+      threads.forEach((thread, index) => {
+        let threadDiv = document.createElement('div');
+        threadDiv.classList.add('thread');
+        
+        // Display the thread title, content, and the name of the user who posted it
+        threadDiv.innerHTML = `
+          <h3>${thread.title} (Posted by ${thread.author})</h3>
+          <p>${thread.content}</p>
+          <button onclick="toggleReplyForm(${index})">Reply</button>
+          
+          <!-- Container for replies -->
+          <div class="replies-contai
+/* Base Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f0e1; /* Coffee cream background */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.forum-container {
+  background-color: #eae0d5; /* Light coffee background for container */
+  width: 90%;
+  max-width: 900px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Forum Heading */
+h1 {
+  color: #5c4033; /* Dark coffee color */
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* New Thread Form */
+.new-thread h2 {
+  color: #5c4033;
+  font-size: 1.5rem;

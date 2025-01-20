@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title>CHALLENGE</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="challenge/style.css">
+
+</head>
+
+<body class="sub_page">
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Video Tutorials</title>
+  <style>
+    /* Banner Styles */
+    .banner {
+        display: flex;
+        justify-content: center; /* Center the banner content */
+        align-items: center;
+        background-color: #0033a0; /* Blue from the American flag */
+        padding: 20px 40px;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        margin-bottom: 40px;
+        position: relative; /* Position relative to place the button correctly */
+    }
+
+    .back-button {
+        background-color: #d50032; /* Red from the American flag */
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        position: absolute; /* Position button absolutely */
+        top: 20px; /* Align to the top */
+        left: 20px; /* Align to the left */
+        border-radius: 4px;
+    }
+
+    .back-button:hover {
+        background-color: #9a0036; /* Darker red for hover effect */
+    }
+
+    .banner h1 {
+        font-size: 40px;
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        flex-grow: 1;
+        margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Banner Section -->
+  <div class="banner">
+      <a href="home.html" class="back-button">Back</a>
+       <h1>Welcome to CodeVerse Challenge</h1>
+  </div>
+</body>
+</html>
+
+        <header> 
+            <p style="font-size:1.5vw">Enhance your coding skills with fun challenges!</p>
+        </header>
+   <!-- courses section -->
+
+    <div class="container">
+        
+
+        <main>
+            <section class="challenge">
+                <h2>Level <span id="level-number">1</span></h2>
+                <p id="challenge-description">Write a function that reverses a string.</p>
+                <textarea id="code-input" placeholder="Type your code here..."></textarea>
+                <button id="submit-btn">Submit Code</button>
+                <p id="result"></p>
+            </section>
+            
+            <!-- Congrats message and Go Back Home button -->
+            <div id="congrats-message" style="display: none;">
+                <h3>Congratulations! You've completed all levels!</h3>
+            </div>
+           <button id="home-btn" style="display: none;" onclick="window.location.href='home.html';">Go Back Home</button>
+
+        </main>
+    </div>
+</section>
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+  <!-- Your challenge app.js file -->
+  <script src="challenge/app.js"></script>
+  
+</body>
+
+</html>

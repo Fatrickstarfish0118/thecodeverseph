@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>HTML Video Tutorials</title>
+   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f1f1f1; /* Light background for contrast */
+    color: #333; /* Dark text for readability */
+    font-size: 16px;
+    line-height: 1.6;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: visible; /* Allow body content to overflow */
+}
+
+.banner {
+    display: flex;
+    justify-content: center; /* Center the banner content */
+    align-items: center;
+    background-color: #0033a0; /* Blue from the American flag */
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 40px;
+    position: relative; /* Position relative to place the button correctly */
+}
+
+.back-button {
+    background-color: #d50032; /* Red from the American flag */
+    color: white;
+    padding: 10px 1px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    position: absolute; /* Position button absolutely */
+    top: 1px; /* Align to the top */
+    left: 20px; /* Align to the left */
+}
+
+.back-button:hover {
+    background-color: #9a0036; /* Darker red for hover effect */
+}
+
+.banner h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    flex-grow: 1;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 40px;
+    padding: 20px;
+    flex-grow: 1;
+    overflow: auto; /* Allow scrolling if content overflows */
+}
+
+.main-video-container {
+    flex: 2;
+    border-radius: 8px;
+    border: 3px solid #0033a0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    background-color: white; /* White background for the main video */
+    padding: 20px;
+    overflow: auto; /* Allow scrolling if the content overflows */
+}
+
+.main-video-container .main-video {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.main-vid-title {
+    font-size: 24px;
+    color: #0033a0; /* Blue for the title */
+    font-weight: 500;
+}
+
+.video-list-container {
+    flex: 1;
+    max-height: 600px;
+    overflow-y: auto; /* Vertical scrolling if content overflows */
+    background-color: #eeeeee; /* Light grey to balance the design */
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.list {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    background-color: #ffffff; /* White for list items */
+    border-radius: 8px;
+    border: 3px solid #bf0a30;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+}
+
+.list:hover {
+    background-color: #c1c1c1; /* Light grey on hover */
+}
+
+.list.active {
+    background-color: #62baec; /* Blue for active state */
+}
+
+.list .list-video {
+    width: 120px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.list .list-title {
+    font-size: 18px;
+    color: #bf0a30; /* Blue for list titles */
+    font-weight: 500;
+    flex: 1;
+}
+
+.comment-section {
+    width: 100%;
+    background-color: #eeeeee; /* Light grey background */
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.comment-section h3 {
+    color: #0033a0; /* Blue for the comment section title */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.comment-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.comment-input textarea {
+    resize: none;
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #0033a0; /* Blue border */
+    background-color: #ffffff; /* White background for the text area */
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.comment-input button {
+    background-color: #d50032; /* Red for the button */
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.comment-input button:hover {
+    background-color: #9a0036; /* Darker red for hover effect */
+}
+
+.comment {
+    background-color: #ffffff; /* White background for comments */
+    color: #0033a0; /* Blue text for comments */
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+a:link, a:visited {
+    background-color: #0033a0; /* Blue for links */
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+a:hover, a:active {
+    background-color: #9a0036; /* Red when hovering or active */
+}
+
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-video-container, .video-list-container {
+        width: 100%;
+    }
+
+    .list {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .list .list-title {
+        font-size: 16px;
+    }
+
+    .comment-input button {
+        padding: 10px 12px;
+    }
+}
+
+
+
+   </style>
+</head>
+<body>
+
+   <!-- Banner Section -->
+   <div class="banner">
+      <a href="home.html" class="back-button">Back</a>
+      <h1>CSS Video Tutorial</h1>
+   </div>
+
+
+<section>
+   <div class="container">
+      <!-- Main Video Container -->
+      <div class="main-video-container">
+         <video src="videos/css/part1.mp4" loop controls class="main-video" autoplay></video>
+         <h3 class="main-vid-title">Tutorial - Overview & Structure</h3>
+         <a href="edit/editor.html" target="_blank">Try it!</a>
+      </div>
+
+      <!-- Video List Container -->
+      <div class="video-list-container">
+         <div class="list active">
+            <video src="videos/css/part1.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 1: OVERVIEW & STRUCTURE</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part2.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 2: LINKING CSS FILES</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part3.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 3: SIMPLE SELECTORS</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part4.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 4: COLORS & UNITS</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part5.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 5: TEXT FORMATTING & FONTS</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part6.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 6: BACKGROUNDS</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part7.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 7: BOX MODELS, PADDING BORDER & MARGIN</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part8.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 8: PSUEDO CLASSES & TRANSITION</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part9.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 9: BOX SHADOW</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part10.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 10: DISPLAY & VISIBILITY</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part11.mp4" class="list-video"></video>
+            <h3 class="list-title">PAPART 11: POSITIONSRT</h3>
+         </div>
+         <div class="list">
+            <video src="videos/css/part12.mp4" class="list-video"></video>
+            <h3 class="list-title">PART 12: PRACTICAL APPLICATION</h3>
+         </div>
+      </div>
+   </div>
+
+</section>
+
+   <script>
+      const videoListItems = document.querySelectorAll('.video-list-container .list');
+      const mainVideo = document.querySelector('.main-video');
+      const mainVidTitle = document.querySelector('.main-vid-title');
+
+      videoListItems.forEach(item => {
+         item.addEventListener('click', () => {
+            videoListItems.forEach(listItem => listItem.classList.remove('active'));
+            item.classList.add('active');
+            mainVideo.src = item.querySelector('video').src;
+            mainVidTitle.textContent = item.querySelector('.list-title').textContent;
+         });
+      });
+
+      // Comment section functionality
+      const commentSubmit = document.getElementById('comment-submit');
+      const commentInput = document.getElementById('comment-input');
+      const commentsContainer = document.getElementById('comments-container');
+
+      commentSubmit.addEventListener('click', () => {
+         const commentText = commentInput.value.trim();
+         if (commentText) {
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `<p>${commentText}</p>`;
+            commentsContainer.appendChild(commentElement);
+            commentInput.value = ''; // Clear input field after submission
+         }
+      });
+   </script>
+</body>
+</html>

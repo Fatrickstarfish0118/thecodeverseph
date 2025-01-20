@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FDF5ED; /* Light background for contrast */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFBF9; /* White background for the main container */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: #007A8E; /* Charlotte Hornets teal color */
+}
+
+.coding-concepts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.concept {
+    background-color: #5B2E91; /* Charlotte Hornets purple */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 calc(30% - 20px);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.concept:hover {
+    background-color: #007A8E; /* Teal on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.5em; /* Slightly larger font size */
+}
+
+p {
+    margin: 10px 0 0;
+    font-size: 1em; /* Standard font size for description */
+}

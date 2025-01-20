@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Section</title>
+    <link rel="stylesheet" href="challenge/cha.css">
+</head>
+<body>
+    <section class="challenge-section">
+        <div class="challenge-card">
+            <img src="path/to/challenge-image.jpg" alt="Challenge Image" class="challenge-image">
+            <div class="challenge-content">
+                <h2 class="challenge-title">Challenge Title</h2>
+                <p class="challenge-description">This is a brief description of the challenge. Try solving it and enhance your skills!</p>
+                <button class="challenge-button" onclick="goToChallenge()">Go to Challenge</button>
+            </div>
+        </div>
+    </section>
+    <script src="challenge/cha.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Gonzaga Bold';
+  background-color: #00274d; /* Navy Blue */
+  color: #ffffff; /* White text */
+}
+
+header {
+  background-color: #00274d; /* Navy Blue */
+  padding: 20px 0;
+}
+
+header h1 {
+  font-size: 36px;
+  color: #ffffff; /* White for contrast */
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.about {
+  padding: 50px 0;
+  background-color: #ffffff; /* White background */
+  border-top: 5px solid #bf0a30; /* Red for the border */
+  border-bottom: 5px solid #bf0a30;
+}
+
+.about h2 {
+  font-size: 32px;
+  color: #bf0a30; /* Red for the heading */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 25px;
+  border: 3px solid #bf0a30;
+  line-height: 1.5;
+  color: #FFFFFF; /* Navy blue text for readability */
+  text-align: center;
+  padding: 0 20px;
+}
+
+.mission-container {
+  background-color: #ffffff; /* White background for the container */
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mission-container h3 {
+  font-size: 28px;
+  color: #bf0a30; /* Red for contrast */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mission-container p {
+  font-size: 18px;
+  color: #00274d; /* Navy blue text */
+  text-align: center;
+}
+
+.team {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.team h2 {
+  font-size: 28px;
+  color: #FFFFFF; /* Red */
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.team-member {
+  width: 250px;
+  text-align: center;
+  background-color: #FFFFFF; /* Red for team member */
+  border-radius: 15px;
+  border: 5px solid #bf0a30;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.team-member:hover {
+  transform: scale(1.05);
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #ffffff; /* White border for images */
+}
+
+.team-member h3 {
+  font-size: 19px;
+  color: #bf0a30; /* White */
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  font-size: 16px;
+  color: #00274d; /* White text */
+}
+
+.footer_section {
+  background-color: #00274d; /* Navy Blue */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.footer_section .footer_links a {
+  color: #bf0a30; /* Red for links */
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.footer_section .footer_links a:hover {
+  text-decoration: underline;
+}
+
+.footer_section p {
+  font-size: 14px;
+  color: #d1d1d1; /* Light gray for footer text */
+}

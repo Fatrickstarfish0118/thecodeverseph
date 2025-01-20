@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <style>
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1; /* Light gray background */
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #9e1b32; /* Cardinal Red color */
+    }
+
+    .profile-details {
+      text-align: center;
+    }
+
+    .profile-details img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-details p {
+      font-size: 18px;
+      margin: 5px 0;
+      color: #9e1b32; /* Cardinal Red for text */
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #9e1b32; /* Cardinal Red button color */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+
+    button:hover {
+      background-color: #7a1621; /* Darker Cardinal Red */
+    }
+
+    .edit-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .edit-form button {
+      background-color: #9e1b32; /* Cardinal Red for the edit button */
+    }
+
+    .edit-form button:hover {
+      background-color: #7a1621; /* Darker Cardinal Red on hover */
+    }
+
+    .edit-form {
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>User Profile</h2>
+
+    <div class="profile-details">
+      <!-- Profile Picture -->
+      <img id="profile-pic" src="" alt="Profile Picture">
+      
+      <!-- Name -->
+      <p id="profile-name">Name: </p>
+      
+      <!-- Age -->
+      <p id="profile-age">Age: </p>
+      
+      <!-- Birthday -->
+      <p id="profile-birthday">Birthday: </p>
+      
+      <!-- Course & Section -->
+      <p id="profile-course">Course & Section: </p>
+      
+      <!-- Email -->
+      <p id="profile-email">Email: </p>
+
+      <!-- Edit Profile Button -->
+      <button id="edit-profile-btn" onclick="editProfile()">Edit Profile</button>
+    </div>
+
+    <div class="edit-form" id="edit-form">
+      <h3>Edit Profile</h3>
+      <form id="edit-profile-form">
+        <!-- Input fields for editing profile -->
+        <input type="text" id="edit-name" placeholder="Enter your name" required>
+        <input type="number" id="edit-age" placeholder="Enter your age" required>
+        <input type="date" id="edit-birthday" placeholder="Enter your birthday" required>
+        <input type="text" id="edit-course" placeholder="Enter your course & section" required>
+        <input type="email" id="edit-email" placeholder="Enter your email" required>
+        <input type="file" id="edit-profile-pic" accept="image/*">
+        <button type="submit">Save Changes</button>
+      </form>
+      <button onclick="cancelEdit()">Cancel</button>
+    </div>
+
+    <button onclick="goHome()">Go to Home</button>
+  </div>
+
+  <script>
+    // Fetching the stored user data from localStorage on page load
+    window.onload = function() {
+      const name = localStorage.getItem('name');
+      const age = localStorage.getItem('age');
+      const birthday = localStorage.getItem('birthday');
+      const course = localStorage.getItem('course');
+      const email = localStorage.getItem('email');
+      const profilePic = localStorage.getItem('profilePic');
+
+      // Updating the profile page with the stored data
+      if (name) document.getElementById('profile-name').textContent = 'Name: ' + name;
+      if (age) document.getElementById('profile-age').textContent = 'Age: ' + age;
+      if (birthday) document.getElementById('profile-birthday').textContent = 'Birthday: ' + birthday;
+      if (course) document.getElementById('profile-course').textContent = 'Course & Section: ' + course;
+      if (email) document.getElementById('profile-email').textContent = 'Email: ' + email;
+      if (profilePic) document.getElementById('profile-pic').src = profilePic;
+    };
+
+    // Function to edit profile details
+    function editProfile() {
+      // Display the edit form and hide the profile details
+      document.getElementById('edit-form').style.display = 'block';
+      document.getElementById('edit-profile-btn').style.display = 'none';
+
+      // Pre-populate the form with current data
+      document.getElementById('edit-name').value = localStorage.getItem('name');
+      document.getElementById('edit-age').value = localStorage.getItem('age');
+      document.getElementById('edit-birthday').value = localStorage.getItem('birthday');
+      document.getElementById('edit-course').value = localStorage.getItem('course');
+      document.getElementById('edit-email').value = localStorage.getItem('email');
+    }
+
+    // Function to cancel editing and return to the profile
+    function cancelEdit() {
+      document.getElementById('edit-form').style.display = 'none';
+      document.getElementById('edit-profile-btn').style.display = 'block';
+    }
+
+    // Event listener for the Edit Profile form submission
+    document.getElementById('edit-profile-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get values from the edit form
+      const name = document.getElementById('edit-name').value;
+      const age = document.getElementById('edit-age').value;
+      const birthday = document.getElementById('edit-birthday').value;
+      const course = document.getElementById('edit-course').value;
+      const email = document.getElementById('edit-email').value;
+      const profilePic = document.getElementById('edit-profile-pic').files[0];
+
+      // Save the new profile information to localStorage
+      localStorage.setItem('name', name);
+      localStorage.setItem('age', age);
+      localStorage.setItem('birthday', birthday);
+      localStorage.setItem('course', course);
+      localStorage.setItem('email', email);
+
+      // Convert profile picture to a data URL and store
+      if (profilePic) {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          localStorage.setItem('profilePic', reader.result);
+          updateProfile(); // Update the profile display
+        };
+        reader.readAsDataURL(profilePic);
+      } else {
+        updateProfile(); // Update profile without picture
+      }
+
+      // Close the edit form and show updated profile
+      cancelEdit();
+    });
+
+    // Function to update the profile display
+    function updateProfile() {
+      const name = localStorage.getItem('name');
+      const age = localStorage.getItem('age');
+      const birthday = localStorage.getItem('birthday');
+      const course = localStorage.getItem('course');
+      const email = localStorage.getItem('email');
+      const profilePic = localStorage.getItem('profilePic');
+
+      document.getElementById('profile-name').textContent = 'Name: ' + name;
+      document.getElementById('profile-age').textContent = 'Age: ' + age;
+      document.getElementById('profile-birthday').textContent = 'Birthday: ' + birthday;
+      document.getElementById('profile-course').textContent = 'Course & Section: ' + course;
+      document.getElementById('profile-email').textContent = 'Email: ' + email;
+      if (profilePic) {
+        document.getElementById('profile-pic').src = profilePic;
+      }
+    }
+
+    // Redirecting to home.html
+    function goHome() {
+      window.location.href = "home.html";
+    }
+  </script>
+</body>
+</html>

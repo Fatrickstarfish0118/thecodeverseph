@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d8eeff; /* White background for a clean look */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            color: #003366; /* Dark blue for text */
+        }
+
+        .quiz-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 1000px;
+            border: 3px solid #003366; /* Blue border around the container */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #003366; /* Dark blue for the title */
+        }
+
+        .score {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #B22222; /* Firebrick red for the score */
+        }
+
+        .answers-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 tiles per row */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #005cbf; /* Blue background for buttons */
+            color: white;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #003366; /* Dark blue on hover */
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #key-point {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+            font-style: italic;
+        }
+
+        #next-btn, #try-again-btn, #home-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #B22222; /* Firebrick red for the buttons */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #next-btn:hover, #try-again-btn:hover, #home-btn:hover {
+            background-color: #ff6347; /* Tomato red on hover */
+        }
+
+        #congratulations {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003366;
+            margin-top: 20px;
+        }
+
+        /* Center the buttons horizontally */
+        .center-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Object-Oriented Programming</h1>
+        <div class="score" id="score">Score: 0</div>
+        <div class="question-container">
+            <p id="question"></p>
+        </div>
+        <div class="answers-container">
+            <button class="answer-btn" onclick="checkAnswer(0)">Option 1</button>
+            <button class="answer-btn" onclick="checkAnswer(1)">Option 2</button>
+            <button class="answer-btn" onclick="checkAnswer(2)">Option 3</button>
+            <button class="answer-btn" onclick="checkAnswer(3)">Option 4</button>
+        </div>
+        <div id="result"></div>
+        <div id="key-point"></div>
+        <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+        <div id="congratulations"></div>
+        <div class="center-buttons">
+            <button id="try-again-btn" onclick="tryAgain()">Try Again</button>
+            <button id="home-btn" onclick="goHome()">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the main principle of Object-Oriented Programming?",
+                options: ["Encapsulation", "Polymorphism", "Abstraction", "All of the above"],
+                correctAnswer: 3,
+                keyPoint: "The four main principles of OOP are Encapsulation, Inheritance, Polymorphism, and Abstraction."
+            },
+            {
+                question: "Which of the following is an example of Encapsulation?",
+                options: ["A car with a steering wheel", "A class with private methods", "A function call", "A variable inside a method"],
+                correctAnswer: 1,
+                keyPoint: "Encapsulation refers to bundling the data and methods that operate on the data within one unit, typically a class."
+            },
+            {
+                question: "What is Inheritance in OOP?",
+                options: ["The ability to hide data", "The ability to reuse code in subclasses", "The ability to make classes more complex", "The ability to call functions from other classes"],
+                correctAnswer: 1,
+                keyPoint: "Inheritance allows one class to inherit properties and behaviors from another class, facilitating code reuse."
+            },
+            {
+                question: "Which OOP principle allows objects to take different forms?",
+                options: ["Encapsulation", "Polymorphism", "Abstraction", "Inheritance"],
+                correctAnswer: 1,
+                keyPoint: "Polymorphism allows objects of different classes to respond to the same method call in different ways."
+            },
+            {
+                question: "What does Abstraction mean in OOP?",
+                options: ["Only showing the essential features of an object", "A method that hides implementation details", "Storing data in memory", "None of the above"],
+                correctAnswer: 0,
+                keyPoint: "Abstraction is the concept of hiding the complex implementation and only exposing the necessary details."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const questionObj = questions[currentQuestionIndex];
+            document.getElementById('question').textContent = questionObj.question;
+
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            answerButtons.forEach((btn, index) => {
+                btn.textContent = questionObj.options[index];
+                btn.style.backgroundColor = '#005cbf'; // Reset all button colors to blue
+                btn.disabled = false; // Enable buttons again for the next question
+            });
+
+            document.getElementById('result').textContent = '';
+            document.getElementById('key-point').textContent = '';
+            document.getElementById('next-btn').style.display = 'none'; // Hide next button initially
+        }
+
+        function checkAnswer(selectedAnswer) {
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            const resultElement = document.getElementById('result');
+            const keyPointElement = document.getElementById('key-point');
+
+            const answerButtons = document.querySelectorAll('.answer-btn');
+
+            answerButtons.forEach((btn, index) => {
+                if (index === correctAnswer) {
+                    btn.style.backgroundColor = '#28a745'; // Green for correct answer
+                } else if (index === selectedAnswer) {
+                    btn.style.backgroundColor = '#dc3545'; // Red for incorrect answer
+                }
+                btn.disabled = true; // Disable all buttons after an answer is chosen
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                resultElement.textContent = "Correct!";
+                resultElement.style.color = '#28a745'; // Green color for correct answer
+                keyPointElement.textContent = ''; // Clear key point if correct
+                score++; // Increase score for correct answer
+            } else {
+                resultElement.textContent = "Incorrect.";
+                resultElement.style.color = '#dc3545'; // Red for incorrect answer
+                keyPointElement.textContent = questions[currentQuestionIndex].keyPoint;
+            }
+
+            document.getElementById('score').textContent = "Score: " + score;
+
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                document.querySelector('.question-container').style.display = 'none';
+                document.querySelector('.answers-container').style.display = 'none';
+                document.getElementById('result').style.display = 'none';
+                document.getElementById('key-point').style.display = 'none';
+                document.getElementById('next-btn').style.display = 'none';
+                document.getElementById('congratulations').textContent = `Congratulations! You completed the quiz. Your final score is: ${score}`;
+                document.getElementById('try-again-btn').style.display = 'block';
+                document.getElementById('home-btn').style.display = 'block';
+            }
+        }
+
+        function tryAgain() {
+            currentQuestionIndex = 0;
+            score = 0;
+            loadQuestion();
+            document.getElementById('score').textContent = "Score: 0";
+            document.getElementById('congratulations').textContent = '';
+            document.getElementById('try-again-btn').style.display = 'none';
+            document.getElementById('home-btn').style.display = 'none';
+            document.querySelector('.question-container').style.display = 'block';
+            document.querySelector('.answers-container').style.display = 'block';
+        }
+
+        function goHome() {
+            window.location.href = "home.html"; // Redirect to home page
+        }
+
+        // Load the first question when the page loads
+        loadQuestion();
+    </script>
+</body>
+</html>

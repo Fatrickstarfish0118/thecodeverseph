@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> CodeMunity </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="home.html">
+            <span>
+              CodeVerse
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="home.html">Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="editor.html">Try it</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="forum.html">Codemunity</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="us.html">about us</a>
+              </li>
+            </ul>
+
+            <!-- Profile Section -->
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span id="profile-username">Profile</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="profile.html">My Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="INDEX.HTML" id="logout">Sign Out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+   <!-- courses section -->
+
+  <section class="section layout_padding">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codemunity</title>
+  <style>
+/* Base Styles */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #ffffff; /* White base, representing part of the flag */
+}
+
+.forum-container {
+  background-color: #ffffff; /* White background */
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #CE1126; /* Red border to represent the red color of the flag */
+}
+
+/* Back Button Styles */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #CE1126; /* Philippine Flag red */
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #A40000; /* Darker red for hover */
+}
+
+/* Forum Heading */
+h1 {
+  color: #0038A8; /* Philippine Flag blue */
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* New Thread Form */
+.new-thread h2 {
+  color: #0038A8; /* Blue for subheading */
+  font-size: 1.4rem;
+}
+
+input,
+textarea {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #CE1126; /* Red border for form elements */
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+  height: 150px;
+}
+
+button {
+  background-color: #CE1126; /* Red buttons */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #A40000; /* Darker red on hover */
+}
+
+/* Thread and Replies Section */
+.thread {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thread h3 {
+  color: #0038A8; /* Blue for thread titles */
+  margin-bottom: 12px;
+}
+
+.thread p {
+  color: #CE1126; /* Red for post content */
+  margin-bottom: 12px;
+}
+
+.replies-container {
+  margin-top: 12px;
+  padding-left: 20px;
+  border-left: 2px solid #0038A8; /* Blue left border for separation */
+}
+
+/* Reply Styling */
+.reply {
+  background-color: #f0f0f0; /* Light grey background for replies */
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.reply p {
+  margin: 0;
+  color: #0038A8; /* Blue for reply text */
+}
+
+/* Reply Form */
+.reply-form textarea {
+  margin-top: 10px;
+}
+
+.reply-form button {
+  background-color: #CE1126; /* Red button */
+  margin-top: 5px;
+}
+
+/* Optional: Yellow accent (for a small detail) */
+h1::after {
+  content: '★';
+  color: #FFD700; /* Yellow to represent stars on the Philippine flag */
+  display: block;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="forum-container">
+    <!-- Back Button -->
+    <a href="home.html" class="back-button">Back</a>
+
+    <h1>Welcome to the CodeMunity, <span id="userNameDisplay"></span>!</h1>
+
+    <!-- Form to create a new thread -->
+    <div class="new-thread">
+      <h2>Create a New Thread</h2>
+      <form id="threadForm">
+        <input type="text" id="title" placeholder="Thread Title" required>
+        <textarea id="content" placeholder="Your post" required></textarea>
+        <button type="submit">Post Thread</button>
+      </form>
+    </div>
+
+    <!-- Section to display threads and replies -->
+    <section>
+      <h2 style="color:#3C3B6E;">Posted Thread</h2>
+    <div id="threadsContainer"></div>
+      
+    </section>
+  </div>
+
+  <script>
+    // Fetch the username from localStorage
+    const username = localStorage.getItem('username');
+
+    // Display the username in the forum header
+    document.getElementById('userNameDisplay').textContent = username;
+
+    // Fetch threads from localStorage or initialize an empty array
+    let threads = JSON.parse(localStorage.getItem('threads')) || [];
+
+    // Function to display threads on the page
+    function displayThreads() {
+      const threadsContainer = document.getElementById('threadsContainer');
+      threadsContainer.innerHTML = '';
+
+      threads.forEach((thread, index) => {
+        let threadDiv = document.createElement('div');
+        threadDiv.classList.add('thread');
+        
+        // Display the thread title, content, and the name of the user who posted it
+        threadDiv.innerHTML = `
+          <h3>${thread.title} (Posted by ${thread.author})</h3>
+          <p>${thread.content}</p>
+          <button onclick="toggleReplyForm(${index})">Reply</button>
+          
+          <!-- Container for replies -->
+          <div class="replies-container" id="replies-${index}">
+            <!-- Replies will be injected here -->
+          </div>
+
+          <!-- Form to post a reply -->
+          <form id="replyForm-${index}" class="reply-form" style="display: none;">
+            <textarea id="replyContent-${index}" placeholder="Your reply"></textarea>
+            <button type="button" onclick="postReply(${index})">Post Reply</button>
+          </form>
+        `;
+
+        // Append the thread to the container
+        threadsContainer.appendChild(threadDiv);
+        displayReplies(index);
+      });
+    }
+
+    // Function to post a new thread
+    document.getElementById('threadForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      // Push the thread with the username (author)
+      threads.push({ title, content, author: username, replies: [] });
+
+      // Store updated threads in localStorage
+      localStorage.setItem('threads', JSON.stringify(threads));
+
+      // Clear the input fields
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+
+      displayThreads();
+    });
+
+    // Function to display replies for a specific thread
+    function displayReplies(threadIndex) {
+      const repliesContainer = document.getElementById(`replies-${threadIndex}`);
+      repliesContainer.innerHTML = ''; // Clear any previous replies
+
+      // Loop through the replies array and append each reply
+      threads[threadIndex].replies.forEach(reply => {
+        const replyDiv = document.createElement('div');
+        replyDiv.classList.add('reply');
+        replyDiv.innerHTML = `<p>${reply.author}: ${reply.content}</p>`;
+        repliesContainer.appendChild(replyDiv);
+      });
+    }
+
+    // Function to toggle the reply form visibility
+    function toggleReplyForm(index) {
+      const replyForm = document.getElementById(`replyForm-${index}`);
+      replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Function to post a reply to a specific thread
+    function postReply(index) {
+      const replyContent = document.getElementById(`replyContent-${index}`).value;
+      if (replyContent.trim() !== '') {
+        // Add reply with the current username
+        threads[index].replies.push({ author: username, content: replyContent });
+
+        // Store updated threads in localStorage
+        localStorage.setItem('threads', JSON.stringify(threads));
+
+        document.getElementById(`replyContent-${index}`).value = ''; // Clear the reply input
+        displayReplies(index); // Update the replies display
+      }
+    }
+
+    // Load and display threads on page load
+    displayThreads();
+  </script>
+</body>
+</html>
+ </section>
+
+  <!-- end service section -->
+
+
+
+
+  
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>
