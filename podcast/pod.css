@@ -1,0 +1,89 @@
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #002868; /* Navy blue for headings */
+}
+
+main {
+    padding: 20px;
+    background-color: #ffffff; /* White background for main content */
+}
+
+h2 {
+    border-bottom: 2px solid #BF0A30; /* Red for border */
+    padding-bottom: 10px;
+    font-size: 1.75rem;
+    color: #002868; /* Navy blue for subheadings */
+}
+
+.episodes {
+    margin-top: 20px;
+}
+
+.episode-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow episodes to wrap on smaller screens */
+    margin-bottom: 20px;
+}
+
+.episode {
+    background: #ffffff; /* White background for each episode */
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: calc(33% - 20px); /* 3 episodes per row with spacing */
+    border: 2px solid #BF0A30; /* Red border around episodes */
+}
+
+.episode h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #002868; /* Navy blue for episode titles */
+}
+
+.episode p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #BF0A30; /* Red for episode text */
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid #002868; /* Navy blue border around audio player */
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #BF0A30; /* Red background for footer */
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .episode {
+        max-width: calc(50% - 20px); /* 2 episodes per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .episode {
+        max-width: 100%; /* 1 episode per row on small screens */
+    }
+
+    h1 {
+        font-size: 2rem; /* Smaller font size for headings */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Smaller font size for subheadings */
+    }
+}
